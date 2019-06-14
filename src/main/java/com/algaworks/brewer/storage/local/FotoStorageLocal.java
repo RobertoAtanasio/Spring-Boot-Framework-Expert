@@ -62,7 +62,7 @@ public class FotoStorageLocal implements FotoStorage {
 			MultipartFile arquivo = files[0];
 			novoNome = renomearArquivo(arquivo.getOriginalFilename());
 			try {
-				System.out.println(">>> salvar: " + this.local.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome);
+//				System.out.println(">>> salvar: " + this.local.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome);
 				arquivo.transferTo(new File(this.local.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome));
 			} catch (IOException e) {
 				throw new RuntimeException("Erro salvando a foto", e);
@@ -80,7 +80,7 @@ public class FotoStorageLocal implements FotoStorage {
 	
 	@Override
 	public byte[] recuperar(String nome) {
-		System.out.println(">>>>>> FotoStorageLocal/recuperar: " + this.local);
+//		System.out.println(">>>>>> FotoStorageLocal/recuperar: " + this.local);
 		try {
 			return Files.readAllBytes(this.local.resolve(nome));
 		} catch (IOException e) {
@@ -106,8 +106,8 @@ public class FotoStorageLocal implements FotoStorage {
 	
 	@Override
 	public String getUrl(String foto) {
-		System.out.println(">>>>>> URL-BASE: " + this.urlBase);
-		System.out.println(">>>>>> localString: " + this.localString);
+//		System.out.println(">>>>>> URL-BASE: " + this.urlBase);
+//		System.out.println(">>>>>> localString: " + this.localString);
 		return urlBase + foto;
 	}
 	
@@ -115,8 +115,8 @@ public class FotoStorageLocal implements FotoStorage {
 	private void criarPastas() {
 		try {
 			Files.createDirectories(this.local);
-			System.out.println(">>>>>> criarPastas: " + this.local);
-			System.out.println(">>>>>> Pasta default: " + this.local.toAbsolutePath());
+//			System.out.println(">>>>>> criarPastas: " + this.local);
+//			System.out.println(">>>>>> Pasta default: " + this.local.toAbsolutePath());
 			
 			if (logger.isDebugEnabled()) {
 				logger.debug("Pastas criadas para salvar fotos.");
