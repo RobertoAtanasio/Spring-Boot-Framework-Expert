@@ -17,8 +17,9 @@ public class PaginacaoUtil {
 		criteria.setFirstResult(primeiroRegistro);
 		criteria.setMaxResults(totalRegistrosPorPagina);
 		
+		// tem-se que incluir o sort.isSorted() porque o sort pode ser diferente de null, aí dará error!
 		Sort sort = pageable.getSort();
-		if (sort != null) {
+		if (sort != null && sort.isSorted()) {
 			Sort.Order order = sort.iterator().next();
 			String property = order.getProperty();
 			criteria.addOrder(order.isAscending() ? Order.asc(property) : Order.desc(property));
